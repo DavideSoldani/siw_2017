@@ -3,8 +3,21 @@
 <html>
 <body>
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
-	   <h2>Welcome : ${pageContext.request.userPrincipal.name}
-           | <a href="<c:url value="/j_spring_security_logout" />" > Logout</a></h2>
+		<div>
+			<h4>
+				Welcome : ${pageContext.request.userPrincipal.name} |
+				<c:url value="/logout" var="logoutUrl" />
+				<a href="${logoutUrl}">Log Out</a>
+			</h4>
+		</div>
+		<div>
+			<form action="admin/formAutore" method="post">
+				<input type="submit" value="Aggiungi autore"/>
+			</form>
+		</div>
+		<div>
+			<a href="">Inserisci una nuova Opera</a>
+		</div>
 	</c:if>
 </body>
 </html>

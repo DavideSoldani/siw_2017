@@ -7,16 +7,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Autore {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@NotEmpty(message="Campo Obbligatorio!")
 	private String nome;
+	@NotEmpty(message="Campo obbligatorio!")
 	private String cognome;
+	@NotEmpty(message="Campo Obbligatorio!")
 	private String nazionalita;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull(message="Campo Obbligatorio!") @Past(message="Hai inserito una data futura!")
 	private Date dataDiNascita;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull(message="Campo Obbligatorio!") @Past(message="Hai inserito una data futura!")
 	private Date dataDiMorte;
 	private List<Opera> opere;
 
