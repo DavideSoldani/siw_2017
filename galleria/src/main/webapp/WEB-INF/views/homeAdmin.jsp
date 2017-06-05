@@ -11,7 +11,7 @@
 			</h4>
 		</div>
 		<div>
-			<form action="admin/formAutore" method="post">
+			<form action="admin/formAutore" method="get">
 				<input type="submit" value="Aggiungi autore"/>
 			</form>
 		</div>

@@ -15,7 +15,6 @@ import it.uniroma3.model.Autore;
 @Controller
 public class AutoreController {
 
-
 	@RequestMapping(value="/newAutore", method=RequestMethod.POST)
 	public String newAutore(@Valid @ModelAttribute("autore") Autore autore, BindingResult result, Model model) {
 		model.addAttribute("autore", autore);
@@ -23,14 +22,9 @@ public class AutoreController {
 			return "newAutore";
 		}
 		else
-		return "confermaDatiAutore";
+			return "confermaDatiAutore";
 	}
 	
-	@RequestMapping(value="/admin/formAutore", method=RequestMethod.POST)
-	public String formPost(Model model) {
-		model.addAttribute("autore",new Autore());
-		return "newAutore";
-	}
 
 	@RequestMapping(value="/admin/formAutore", method=RequestMethod.GET)
 	public String formGet(Model model) {
