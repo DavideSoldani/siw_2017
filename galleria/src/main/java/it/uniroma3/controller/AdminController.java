@@ -27,7 +27,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
-		return "homeAdmin";
+		return "admin/homeAdmin";
 	}
 	
 	 @RequestMapping(value="/logout", method = RequestMethod.GET)
