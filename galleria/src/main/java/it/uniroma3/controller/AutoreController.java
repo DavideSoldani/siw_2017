@@ -2,7 +2,7 @@ package it.uniroma3.controller;
 
 import javax.validation.Valid;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +15,9 @@ import it.uniroma3.service.AutoreService;
 
 @Controller
 public class AutoreController {
+	
+	@Autowired
+	private AutoreService autoreService;
 
 	@RequestMapping(value="newAutore", method=RequestMethod.POST)
 	public String newAutore(@Valid @ModelAttribute("autore") Autore autore, BindingResult result, Model model) {
@@ -23,8 +26,7 @@ public class AutoreController {
 			return "admin/newAutore";
 		}
 		else{
-			AutoreService autoreService = new AutoreService();
-			//autoreService.add(autore);
+			autoreService.add(autore);
 			return "admin/confermaDatiAutore";
 		}
 	}
