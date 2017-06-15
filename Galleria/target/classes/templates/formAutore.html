@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+<title>New Autore</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="/css/bootstrap-min.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<h2 style="margin-top: 5%">Inserisci Autore</h2>
+
+		<form action="#" th:action="@{/admin/autore}" th:object="${autore}" method="post" class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="nome">Nome:</label>
+				<div class="col-sm-10">
+					<span><input type="text" th:field="*{nome}" placeholder="Inserisci nome"/></span>
+					<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome Error</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="nome">Cogome:</label>
+				<div class="col-sm-10">
+					<span><input type="text" th:field="*{cognome}" placeholder="Inserisci cognome"/></span>
+					<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">Cognome Error</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="cognome">Nazionalità:</label>
+				<div class="col-sm-10">
+					<span><input type="text" th:field="*{Nazionalita}" placeholder="Inserisci nazionalità"/></span>
+					<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}">Nazionalita Error</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="dataDiNascita">Data di nascita</label>
+				<div class="col-sm-10">
+					<span><input type="text" th:field="*{dataDiNascita}" placeholder="Inserisci data di nascita"/></span>
+					<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}">dataDiNascita Error</span>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="dataDiMorte">Data di morte</label>
+				<div class="col-sm-10">
+					<span><input type="text" th:field="*{dataDiMorte}" placeholder="Inserisci data di morte"/></span>
+					<span th:if="${#fields.hasErrors('dataDiMorte')}" th:errors="*{dataDiMorte}">dataDiNascita Error</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Submit</button>
+				</div>
+			</div>
+			</form>
+	</div>
+</body>
+</html>

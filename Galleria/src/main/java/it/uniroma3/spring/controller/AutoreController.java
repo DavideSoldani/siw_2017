@@ -1,5 +1,8 @@
 package it.uniroma3.spring.controller;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,33 +12,33 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import it.uniroma3.spring.model.Autore;
+import it.uniroma3.spring.service.AutoreService;
 
-import it.uniroma3.spring.model.Customer;
-import it.uniroma3.spring.service.CustomerService;
 
 
 @Controller
-public class CustomerController  {
+public class AutoreController  {
 	
     @Autowired
-    private CustomerService customerservice; 
+    private AutoreService autoreservice; 
 
-    @GetMapping("/customer")
-    public String showForm(Customer customer) {
-        return "form";
-    }
+    @GetMapping("/admin/autore")
+    public String showFormAutore(Autore autore) {
+		return "formAutore";
+	}
 
-    @PostMapping("/customer")
-    public String checkCustomerInfo(@Valid @ModelAttribute Customer customer, 
+    @PostMapping("/admin/autore")
+    public String checkAutoreInfo(@Valid @ModelAttribute Autore autore, 
     									BindingResult bindingResult, Model model) {
-    	
         if (bindingResult.hasErrors()) {
-            return "form";
+            return "formAutore";
         }
         else {
-        	model.addAttribute(customer);
-            customerservice.add(customer); 
+        	model.addAttribute(autore);
+            autoreservice.add(autore); 
+        
+        return "riepilogoNuovoAutore";
         }
-        return "results";
     }
 }

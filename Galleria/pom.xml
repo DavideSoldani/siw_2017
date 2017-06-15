@@ -7,8 +7,8 @@
 	<artifactId>spring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>galleria</name>
+	<description>progetto per una galleria d'arte</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -68,24 +68,6 @@
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<!-- Servlet -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
 		</dependency>
 	</dependencies>
 
