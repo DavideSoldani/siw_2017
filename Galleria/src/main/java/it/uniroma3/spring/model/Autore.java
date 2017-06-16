@@ -3,10 +3,12 @@ package it.uniroma3.spring.model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -35,6 +37,9 @@ public class Autore {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull(message="Campo Obbligatorio!") @Past(message="Hai inserito una data futura!")
 	private Date dataDiMorte;
+	@OneToMany(mappedBy = "autore",cascade = {CascadeType.PERSIST})
+	@NotNull
+	private List<Quadro> quadri;
 	
 	public Autore() {}
 

@@ -41,9 +41,16 @@
 					<span th:if="${#fields.hasErrors('dimensioni')}" th:errors="*{dimensioni}">Dimensioni Error</span>
 				</div>
 			</div>
-
 			
-			<div class="form-group">
+		<div th:if="${not #lists.isEmpty(autori)}">
+			<ul>
+		    	<li th:each="autore : ${autori}"> ${autore.nome} </li>
+		    	<li><input id="autoreId" name="autoreId" type="hidden" th:value="${autore.id}" /> </li>
+			</ul>
+		</div>
+			
+		
+		<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">Submit</button>
 				</div>
