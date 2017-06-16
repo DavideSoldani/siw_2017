@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -18,8 +19,8 @@ public class Quadro {
 	private Long id;
 	@NotEmpty(message="Campo Obbligatorio!")
 	private String titolo;
-	@NotEmpty(message="Campo Obbligatorio!")  @Pattern(regexp = "[0-9]+")
-	private Integer anno;
+	@NotEmpty(message="Campo Obbligatorio!")  @Pattern(regexp = "[0-9]+",message="Solo numeri ammessi!") @Size(min=4,max=4,message="Devi inserire al massimo 4 cifre!")
+	private String anno;
 	@NotEmpty(message="Campo Obbligatorio!")
 	private String tecnica;
 	@NotEmpty(message="Campo Obbligatorio!")
@@ -28,6 +29,14 @@ public class Quadro {
 	@NotNull
 	private Autore autore;
 	
+	public Autore getAutore() {
+		return autore;
+	}
+
+	public void setAutore(Autore autore) {
+		this.autore = autore;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -44,13 +53,11 @@ public class Quadro {
 		this.titolo = titolo;
 	}
 
-	
-
-	public Integer getAnno() {
+	public String getAnno() {
 		return anno;
 	}
 
-	public void setAnno(Integer anno) {
+	public void setAnno(String anno) {
 		this.anno = anno;
 	}
 
@@ -69,7 +76,4 @@ public class Quadro {
 	public void setDimensioni(String dimensioni) {
 		this.dimensioni = dimensioni;
 	}
-
-
-	
 }

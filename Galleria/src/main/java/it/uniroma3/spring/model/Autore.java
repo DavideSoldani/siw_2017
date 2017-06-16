@@ -37,8 +37,7 @@ public class Autore {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull(message="Campo Obbligatorio!") @Past(message="Hai inserito una data futura!")
 	private Date dataDiMorte;
-	@OneToMany(mappedBy = "autore",cascade = {CascadeType.PERSIST})
-	@NotNull
+	@OneToMany(mappedBy = "autore",cascade = {CascadeType.REMOVE})
 	private List<Quadro> quadri;
 	
 	public Autore() {}
