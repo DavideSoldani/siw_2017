@@ -10,8 +10,6 @@ public interface AutoreRepository extends CrudRepository<Autore, Long> {
 
     List<Autore> findByNome(String nome);
     
-    List<Autore> findAll();
-
     List<Autore> findByCognome(String cognome);
     
     List<Autore> findByNazionalita(String nazionalita);

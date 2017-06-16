@@ -31,7 +31,9 @@ public class QuadroController  {
     private AutoreService autoreservice;
 
     @GetMapping("/admin/quadro")
-    public String showFormQuadro(Quadro quadro) {
+    public String showFormQuadro(Quadro quadro, Model model) {
+    	List<Autore> autori = (List<Autore>) autoreservice.findAll();
+    	model.addAttribute("autori",autori);
 		return "formQuadro";
 	}
 
@@ -39,12 +41,12 @@ public class QuadroController  {
     public String checkQuadroInfo(@Valid @ModelAttribute Quadro quadro, 
     									BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+        	List<Autore> autori = (List<Autore>) autoreservice.findAll();
+        	model.addAttribute("autori",autori);
             return "formQuadro";
         }
         else {
-        	List<Autore> autori = (List<Autore>) autoreservice.findAll();
         	model.addAttribute(quadro);
-        	model.addAttribute(autori);
             quadroservice.add(quadro); 
         
         return "riepilogoNuovoQuadro";
