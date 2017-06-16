@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+  <title>Dati inseriti</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="/css/bootstrap-min.css"/>
+  <script src="/js/jquery-1.12.2.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2 style="margin-top: 5%">Hai inserito:</h2>
+  <div class="col-sm-4">
+  <ul class="list-group">
+    <li class="list-group-item"><p th:text="'Titolo: ' + ${quadro.titolo}" /></li>
+    <li class="list-group-item"><p th:text="'Anno: ' + ${quadro.anno}" /></li>
+    <li class="list-group-item"><p th:text="'Tecnica: ' + ${quadro.tecnica}" /></li>
+    <li class="list-group-item"><p th:text="'Dimensioni: ' + ${quadro.dimensioni}" /></li>
+   </ul>
+  <div><button type="button" class="btn btn-default" onclick="location.href='/admin'" style="margin-top:3%">Ok</button></div>
+  </div>
+</div>
+</body>
+</html>
