@@ -26,4 +26,9 @@ public class AutoreService {
 		return this.autoreRepository.findOne(id);
 	}
 
+	public void remove(long autoreId) {
+		 this.autoreRepository.delete(autoreId);
+		
+	}
+
 }
