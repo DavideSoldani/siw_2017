@@ -1,17 +1,60 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Autori</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script th:src="@{/js/sort.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
 <body>
-		<div>
-			Welcome! |
-			<a href="/logout">Log Out</a>
-			
+	<div>
+		Welcome! | <a href="/logout">Log Out</a>		
+	</div>
+
+	<div class="container">
+		<button onclick="location.href='/admin/autore'">Aggiungi Nuovo Autore</button>
+		<button onclick="location.href='/admin/quadro'">Aggiungi Nuovo Quadro</button>
+		<button onclick="location.href='/admin/amministratore'">Gestisci Amministratori</button>
+		<h2>Autori</h2>
+		<div th:if="${not #lists.isEmpty(autori)}" class="list-group">
+			<table class="table table-hover" id="myTable">
+				<thead>
+					<tr>
+						<th onclick="sortTable(0)">Nome</th>
+						<th onclick="sortTable(1)">Cognome</th>
+						<th onclick="sortTable(2)">Nazionalita</th>
+						<th onclick="sortTable(3)">Data di Nascita</th>
+						<th onclick="sortTable(4)">Data di Morte</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tr th:each="autore : ${autori}">
+					<td th:text="${autore.nome}"></td>
+					<td th:text="${autore.cognome}"></td>
+					<td th:text="${autore.nazionalita}"></td>
+					<td th:text="${autore.dataDiNascita}"></td>
+					<td th:text="${autore.dataDiMorte}"></td>
+					<td>
+						<a href="/admin/rimuoviAutore">
+          				<span class="glyphicon glyphicon-trash"></span>
+        				</a>
+        				<a href="/admin/modificaAutore">
+          				<span class="glyphicon glyphicon-pencil"></span>
+        				</a>
+        				<a href="#">
+          					<span class="glyphicon glyphicon-list"></span>
+        				</a>
+					</td>
+				</tr>
+			</table>
 		</div>
-		<div>
-			<button onclick="location.href='/admin/autore'">Aggiungi Nuovo Autore</button>
-			
-		</div>
-		<div>
-			<button onclick="location.href='/admin/quadro'">Aggiungi Nuovo Quadro</button>
-		</div>
+	</div>
 </body>
 </html>

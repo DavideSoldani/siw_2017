@@ -25,10 +25,11 @@ public class AutoreService {
 	public Autore findbyId(Long id) {
 		return this.autoreRepository.findOne(id);
 	}
-
+	
 	public void remove(long autoreId) {
 		 this.autoreRepository.delete(autoreId);
 		
 	}
+	
 
 }

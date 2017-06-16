@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Autori</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script th:src="@{/js/sort.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+
+	<div class="container">
+		<button onclick="location.href='/admin/nuovoAmministratore'">Aggiungi Amministratore</button>
+		<h2>Amministratori</h2>
+		<div th:if="${not #lists.isEmpty(amministratori)}" class="list-group">
+			<table class="table table-hover" id="myTable">
+				<thead>
+					<tr>
+						<th onclick="sortTable(0)">Username</th>
+						<th onclick="sortTable(1)">Password</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tr th:each="amministratore : ${amministratori}">
+					<td th:text="${amministratore.username}"></td>
+					<td>Password Nascosta!</td>
+					<td>
+						<a href="/admin/rimuoviAmministratore">
+          				<span class="glyphicon glyphicon-trash"></span>
+        				</a>
+        				<a href="/admin/modificaAmministratore">
+          				<span class="glyphicon glyphicon-pencil"></span>
+        				</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>
