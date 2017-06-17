@@ -1,11 +1,11 @@
 package it.uniroma3.spring.controller;
-
-import java.util.Locale;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+import it.uniroma3.spring.service.QuadroService;
 
 /**
  * Handles requests for the application home page.
@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class GalleriaController {
 	
+	@Autowired
+	private QuadroService quadroService;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/entra", method = RequestMethod.GET)
-	public String entra(Locale locale, Model model) {
+	@GetMapping("/entra")
+	public String entra(Model model) {
+		model.addAttribute("quadri", quadroService.findAll());
 		return "galleria";
 	} 
 }

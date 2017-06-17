@@ -15,7 +15,7 @@ import it.uniroma3.spring.service.QuadroService;
 
 
 @Controller
-public class ListaQudriController {
+public class ListaQuadriController {
 	@Autowired
 	private QuadroService quadroService;
 	
@@ -27,11 +27,6 @@ public class ListaQudriController {
 	}
     
 
-	@GetMapping("/quadri")
-	public String visualizzaElencoQuadri(Model model) {
-		model.addAttribute("quadri", quadroService.findAll());
-	    return "listaQuadri";
-	}
 	
 	
 	 

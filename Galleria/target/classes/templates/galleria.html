@@ -1,6 +1,6 @@
    
 <!DOCTYPE html>
-<html lang="it">
+<html  xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
@@ -44,66 +44,47 @@
       <div class="container d-flex justify-content-between">
         <a href="#" class="navbar-brand">Album</a>
         <a href= "/" class="navbar-brand">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        
       </div>
     </div>
 
     <section class="jumbotron text-center">
       <div class="container">
-        <h1 class="jumbotron-heading">Opere</h1>
+        <h1 class="jumbotron-heading">Quadri</h1>
         <p class="lead text-muted">Scegli un'opera</p>
-        <p>
-          <a href="#" class="btn btn-primary">Main call to action</a>
-          <a href="#" class="btn btn-secondary">Secondary action</a>
-        </p>
-      </div>
+        </div>
     </section>
 
     <div class="album text-muted">
       <div class="container">
-
-        <div class="row">
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-          <div class="card">
-            <img data-src="holder.js/100px280/thumb" alt="Card image cap"/>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-          </div>
-        </div>
+		
+	 	<div th:if="${not #lists.isEmpty(quadri)}" class="list-group"> 
+			<table class="table table-hover" id="myTable">
+				<thead>
+					<tr>
+						<th onclick="sortTable(0)">Titolo</th>
+						<th onclick="sortTable(1)">Anno</th>
+						<th onclick="sortTable(2)">Tecnica</th>
+						<th onclick="sortTable(3)">Dimensioni</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tr th:each="quadro : ${quadri}">
+					<td th:text="${quadro.titolo}"></td>
+					<td th:text="${quadro.anno}"></td>
+					<td th:text="${quadro.tecnica}"></td>
+					<td th:text="${quadro.dimensioni}"></td>
+					<td>
+						<a href="/admin/rimuoviQuadro">
+          				<span class="glyphicon glyphicon-trash"></span>
+        				</a>
+        				<a href="/admin/modificaQuadro">
+          				<span class="glyphicon glyphicon-pencil"></span>
+        				</a>
+        			</td>
+				</tr>
+			</table>
+		</div>
 
       </div>
     </div>
@@ -113,9 +94,7 @@
         <p class="float-right">
           <a href="#">Back to top</a>
         </p>
-        <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-        <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-      </div>
+       </div>
     </footer>
   </body>
 </html>
