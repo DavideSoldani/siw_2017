@@ -11,7 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import it.uniroma3.spring.model.Autore;
 import it.uniroma3.spring.service.AutoreService;
 
@@ -41,4 +44,11 @@ public class AutoreController  {
         return "riepilogoNuovoAutore";
         }
     }
+    
+    @GetMapping("/admin/rimuoviAutore")
+    public String rimuoviAutore(@RequestParam("id") long id, Model model) {
+	    autoreservice.remove(id);
+	    model.addAttribute("autori", autoreservice.findAll());
+	    return "homeAdmin";
+	}
 }

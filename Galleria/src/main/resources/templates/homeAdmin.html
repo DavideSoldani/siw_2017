@@ -42,13 +42,13 @@
 					<td th:text="${autore.dataDiNascita}"></td>
 					<td th:text="${autore.dataDiMorte}"></td>
 					<td>
-						<a href="/admin/rimuoviAutore">
+						<a th:href="@{'/admin/rimuoviAutore'(id=${autore.id})}">
           				<span class="glyphicon glyphicon-trash"></span>
         				</a>
         				<a href="/admin/modificaAutore">
           				<span class="glyphicon glyphicon-pencil"></span>
         				</a>
-        				<a href="#">
+        				<a th:href="@{'/admin/quadriAutore'(id=${autore.id})}">
           					<span class="glyphicon glyphicon-list"></span>
         				</a>
 					</td>
