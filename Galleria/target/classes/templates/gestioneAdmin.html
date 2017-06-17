@@ -15,7 +15,7 @@
 </head>
 <body>
 
-	<div class="container">
+	<div class="container" style="margin-top:5%">
 		<button onclick="location.href='/admin/nuovoAmministratore'">Aggiungi Amministratore</button>
 		<h2>Amministratori</h2>
 		<div th:if="${not #lists.isEmpty(amministratori)}" class="list-group">
@@ -31,10 +31,10 @@
 					<td th:text="${amministratore.username}"></td>
 					<td>Password Nascosta!</td>
 					<td>
-						<a href="/admin/rimuoviAmministratore">
+						<a th:href="@{'/admin/rimuoviAmministratore'(id=${amministratore.username})}">
           				<span class="glyphicon glyphicon-trash"></span>
         				</a>
-        				<a href="/admin/modificaAmministratore">
+        				<a th:href="@{'/admin/modificaAmministratore'(id=${amministratore.username})}">
           				<span class="glyphicon glyphicon-pencil"></span>
         				</a>
 					</td>

@@ -15,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.spring.model.Amministratore;
 import it.uniroma3.spring.model.Autorizzazione;
@@ -71,11 +72,22 @@ public class AdminController {
 	            autorizzazione.setAuthority("ROLE_ADMIN");
 	            autorizzazione.setUsername(amministratore.getUsername());
 	            autorizzazioneService.add(autorizzazione);
+	            model.addAttribute("autori", autoreService.findAll());
 	        return "homeAdmin";
 	     }
 	 }
 	 @GetMapping("/admin/amministratore")
 		public String visualizzaElencoAdmin(Model model) {
+		    model.addAttribute("amministratori", amministratoreService.findAll());
+		    return "gestioneAdmin";
+		}
+	 
+	 @GetMapping("/admin/rimuoviAmministratore")
+	    public String rimuoviAmministratore(@RequestParam("id") String id, Model model) {
+		 	Amministratore amministratore = this.amministratoreService.findByUsername(id);
+		    this.amministratoreService.remove(amministratore);
+		    Autorizzazione autorizzazione = this.autorizzazioneService.findByUsername(id);
+		    this.autorizzazioneService.remove(autorizzazione);
 		    model.addAttribute("amministratori", amministratoreService.findAll());
 		    return "gestioneAdmin";
 		}

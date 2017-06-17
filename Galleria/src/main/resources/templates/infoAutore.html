@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="it">
 <head>
-  <title>Dati inseriti</title>
+  <title>Autore</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <link rel="stylesheet" href="/css/bootstrap-min.css"/>
@@ -10,8 +10,9 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="margin-top:5%">
   <div class="col-sm-4">
+  <h2>Info Autore</h2>
   <ul class="list-group">
     <li class="list-group-item"><p th:text="'Nome: ' + ${autore.nome}" /></li>
     <li class="list-group-item"><p th:text="'Cognome: ' + ${autore.cognome}" /></li>

@@ -22,9 +22,13 @@ public class AutorizzazioneService {
         this.autorizzazioneRepository.save(autorizzazione);
     }
 
-	public void remove(long autorizzazioneId) {
-		 this.autorizzazioneRepository.delete(autorizzazioneId);
+	public void remove(Autorizzazione autorizzazione) {
+		 this.autorizzazioneRepository.delete(autorizzazione);
 		
+	}
+	
+	public Autorizzazione findByUsername(String username){
+		return this.autorizzazioneRepository.findByUsername(username);
 	}
 
 }

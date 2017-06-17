@@ -23,9 +23,13 @@ public class AmministratoreService {
         this.amministratoreRepository.save(amministratore);
     }
 
-	public void remove(long autoreId) {
-		 this.amministratoreRepository.delete(autoreId);
+	public void remove(Amministratore amministratore) {
+		 this.amministratoreRepository.delete(amministratore);
 		
+	}
+	
+	public Amministratore findByUsername(String username){
+		return this.amministratoreRepository.findByUsername(username);
 	}
 
 }
