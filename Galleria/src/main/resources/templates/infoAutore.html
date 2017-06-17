@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="it">
+<head>
+  <title>Dati inseriti</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="/css/bootstrap-min.css"/>
+  <script src="/js/jquery-1.12.2.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="col-sm-4">
+  <ul class="list-group">
+    <li class="list-group-item"><p th:text="'Nome: ' + ${autore.nome}" /></li>
+    <li class="list-group-item"><p th:text="'Cognome: ' + ${autore.cognome}" /></li>
+    <li class="list-group-item"><p th:text="'Nazionalita: ' + ${autore.nazionalita}" /></li>
+    <li class="list-group-item"><p th:text="'Data di nascita: ' + ${autore.dataDiNascita}" /></li>
+    <li class="list-group-item"><p th:text="'Data di morte: ' + ${autore.dataDiMorte}" /></li>
+  </ul>
+  <div><button type="button" class="btn btn-default" onclick="location.href='/entra'" style="margin-top:3%">Torna alla Galleria</button></div>
+  </div>
+</div>
+</body>
+</html>

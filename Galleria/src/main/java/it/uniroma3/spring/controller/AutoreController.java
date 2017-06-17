@@ -1,7 +1,6 @@
 package it.uniroma3.spring.controller;
 
-import java.text.Format;
-import java.text.SimpleDateFormat;
+
 
 import javax.validation.Valid;
 
@@ -11,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -44,6 +43,19 @@ public class AutoreController  {
         return "riepilogoNuovoAutore";
         }
     }
+    
+    @GetMapping("/infoAutore")
+    public String mostraAutore(@RequestParam("id") long id, Model model) {
+	    model.addAttribute("autore", autoreservice.findbyId(id));
+	    return "infoAutore";
+	}
+    
+    @GetMapping("/listaAutori")
+    public String listaAutori(Model model) {
+	    model.addAttribute("autori", autoreservice.findAll());
+	    return "listaAutori";
+	}
+    
     
     @GetMapping("/admin/rimuoviAutore")
     public String rimuoviAutore(@RequestParam("id") long id, Model model) {
