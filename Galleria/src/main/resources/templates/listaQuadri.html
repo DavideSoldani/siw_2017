@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Quadri</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script th:src="@{/js/sort.js}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+	
+
+	<div class="container">
+		
+		<button onclick="location.href='/admin/'">Home Admin</button>
+		<h2>Quadri ${autore.nome} ${autore.cognome}</h2>
+		<div th:if="${not #lists.isEmpty(quadri)}" class="list-group">
+			<table class="table table-hover" id="myTable">
+				<thead>
+					<tr>
+						<th onclick="sortTable(0)">Titolo</th>
+						<th onclick="sortTable(1)">Anno</th>
+						<th onclick="sortTable(2)">Tecnica</th>
+						<th onclick="sortTable(3)">Dimensioni</th>
+						<th>Azioni</th>
+					</tr>
+				</thead>
+				<tr th:each="quadro : ${quadri}">
+					<td th:text="${quadro.titolo}"></td>
+					<td th:text="${quadro.anno}"></td>
+					<td th:text="${quadro.tecnica}"></td>
+					<td th:text="${quadro.dimensioni}"></td>
+					<td>
+						<a href="/admin/rimuoviQuadro">
+          				<span class="glyphicon glyphicon-trash"></span>
+        				</a>
+        				<a href="/admin/modificaQuadro">
+          				<span class="glyphicon glyphicon-pencil"></span>
+        				</a>
+        			</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -10,8 +10,10 @@ public interface QuadroRepository extends CrudRepository<Quadro, Long> {
 
     List<Quadro> findByTitolo(String titolo);
 
-    List<Quadro> findByAnno(Integer anno);
+    List<Quadro> findByAnno(String anno);
     
     List<Quadro> findByTecnica(String tecnica);
+    
+    List<Quadro> findByAutore_Id(Long id); 
     
 }

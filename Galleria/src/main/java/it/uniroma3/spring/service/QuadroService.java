@@ -16,10 +16,14 @@ public class QuadroService {
     public Iterable<Quadro> findAll() {
         return this.quadroRepository.findAll();
     }
+    
+    public Iterable<Quadro> findByAutore_Id(Long id) {
+        return this.quadroRepository.findByAutore_Id(id);
+    }
 
     @Transactional
-    public void add(final Quadro autore) {
-        this.quadroRepository.save(autore);
+    public void add(final Quadro quadro) {
+        this.quadroRepository.save(quadro);
     }
 
 	public Quadro findbyId(Long id) {
