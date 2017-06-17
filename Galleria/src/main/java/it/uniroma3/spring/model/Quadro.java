@@ -25,6 +25,8 @@ public class Quadro {
 	private String tecnica;
 	@NotEmpty(message="Campo Obbligatorio!")
 	private String dimensioni;
+	@NotEmpty(message="Campo Obbligatorio!")
+	private String urlImage;
 	@ManyToOne
 	@NotNull
 	private Autore autore;
@@ -76,4 +78,13 @@ public class Quadro {
 	public void setDimensioni(String dimensioni) {
 		this.dimensioni = dimensioni;
 	}
+
+	public String getUrlImage() {
+		return urlImage;
+	}
+
+	public void setUrlImage(String urlImage) {
+		this.urlImage = urlImage;
+	}
+	
 }

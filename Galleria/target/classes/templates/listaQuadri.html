@@ -29,6 +29,7 @@
 						<th onclick="sortTable(1)">Anno</th>
 						<th onclick="sortTable(2)">Tecnica</th>
 						<th onclick="sortTable(3)">Dimensioni</th>
+						<th onclick="sortTable(3)">url</th>
 						<th>Azioni</th>
 					</tr>
 				</thead>
@@ -44,6 +45,8 @@
 				<input th:type="hidden" th:value="${quadro.autore}" th:field="*{autore}"/></td>
 				<td><input th:type="text" th:field="*{dimensioni}" th:value="${quadro.dimensioni}"/>
 				<span th:if="${#fields.hasErrors('dimensioni')}" th:errors="*{dimensioni}">Dimensioni Error</span></td>
+				<td><input th:type="text" th:field="*{urlImage}" th:value="${quadro.urlImage}"/>
+				<span th:if="${#fields.hasErrors('urlImage')}" th:errors="*{urlImage}">UrlImage Error</span></td>
 				<td><button type="submit" class="btn btn-default">Invia</button></td>
 				</tr>
 				
@@ -52,6 +55,7 @@
 					<td th:text="${item.anno}"></td>
 					<td th:text="${item.tecnica}"></td>
 					<td th:text="${item.dimensioni}"></td>
+					<td th:text="${item.urlImage}"></td>
 					<td>
 						<a th:href="@{'/admin/rimuoviQuadro'(autoreId=${autore.id},quadroId=${item.id})}">
           				<span class="glyphicon glyphicon-trash"></span>
