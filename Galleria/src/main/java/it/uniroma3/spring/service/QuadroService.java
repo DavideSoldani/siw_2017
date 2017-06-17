@@ -29,9 +29,10 @@ public class QuadroService {
 	public Quadro findbyId(Long id) {
 		return this.quadroRepository.findOne(id);
 	}
-	
-	public void delete(final Quadro quadro){
-		this.quadroRepository.delete(quadro);
+     
+	public void remove(long quadroId) {
+		 this.quadroRepository.delete(quadroId);
+		
 	}
 
 }

@@ -22,6 +22,9 @@
 		<button onclick="location.href='/admin/autore'">Aggiungi Nuovo Autore</button>
 		<button onclick="location.href='/admin/quadro'">Aggiungi Nuovo Quadro</button>
 		<button onclick="location.href='/admin/amministratore'">Gestisci Amministratori</button>
+		<div class="alert alert-danger" style="margin-top:2%">
+  		<strong>Attenzione!</strong> Cancellando un autore verranno cancellati anche tutti i suoi quadri.
+		</div>
 		<h2>Autori</h2>
 		<div th:if="${not #lists.isEmpty(autori)}" class="list-group">
 			<table class="table table-hover" id="myTable">

@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.spring.model.Autore;
 import it.uniroma3.spring.model.Quadro;
@@ -52,4 +53,16 @@ public class QuadroController  {
         return "riepilogoNuovoQuadro";
         }
     }
+    
+    @GetMapping("/admin/rimuoviQuadro")
+    public String rimuoviAutore(@RequestParam("autoreId") String autoreId, 
+    							@RequestParam("quadroId") long quadroId, Model model) {
+    	long autorId = Long.parseLong(autoreId);
+    	Autore autore = autoreservice.findbyId(autorId);
+	    quadroservice.remove(quadroId);
+	    model.addAttribute("quadri", quadroservice.findByAutore_Id(autorId));
+	    model.addAttribute("autore",autore);
+	    return "listaQuadri";
+	}
 }
+
