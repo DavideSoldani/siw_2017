@@ -32,8 +32,10 @@ public class ListaQuadriController {
 
 	@GetMapping("/quadriAutore")
 	public String visualizzaElencoQuadriLatoUtente(@RequestParam("id") Long id, Model model) {
+		Autore autore = autoreService.findbyId(id);
+		model.addAttribute("autore",autore);
 		model.addAttribute("quadri", quadroService.findByAutore_Id(id));
-	    return "listaQuadri";
+	    return "listaQuadriUtente";
 	}
     
 

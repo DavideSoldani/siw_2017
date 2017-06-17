@@ -17,8 +17,7 @@
 	
 
 	<div class="container">
-		
-		<button onclick="location.href='/admin/'" style="margin-top:5%">Indietro</button>
+		<button onclick="location.href='/listaAutori'">Autori</button>
 		<h2>Quadri di <span th:text="${autore.nome}"></span> </h2>
 		<div th:if="${not #lists.isEmpty(quadri)}" class="list-group">
 			<table class="table table-hover" id="myTable">
@@ -28,7 +27,7 @@
 						<th onclick="sortTable(1)">Anno</th>
 						<th onclick="sortTable(2)">Tecnica</th>
 						<th onclick="sortTable(3)">Dimensioni</th>
-						<th>Azioni</th>
+						
 					</tr>
 				</thead>
 				<tr th:each="quadro : ${quadri}">
@@ -37,12 +36,7 @@
 					<td th:text="${quadro.tecnica}"></td>
 					<td th:text="${quadro.dimensioni}"></td>
 					<td>
-						<a th:href="@{'/admin/rimuoviQuadro'(autoreId=${autore.id},quadroId=${quadro.id})}">
-          				<span class="glyphicon glyphicon-trash"></span>
-        				</a>
-        				<a th:href="@{'/admin/modificaQuadro'(autoreId=${autore.id}),(quadroId=${quadro.id})}">
-          				<span class="glyphicon glyphicon-pencil"></span>
-        				</a>
+						
         			</td>
 				</tr>
 			</table>
