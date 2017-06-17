@@ -24,7 +24,13 @@ public class AutoreController  {
 	
     @Autowired
     private AutoreService autoreservice; 
-
+    
+    
+    @ModelAttribute("autore")
+    public Autore autore() {
+     return new Autore();
+    }
+    
     @GetMapping("/admin/autore")
     public String showFormAutore(Autore autore) {
 		return "formAutore";
@@ -63,4 +69,28 @@ public class AutoreController  {
 	    model.addAttribute("autori", autoreservice.findAll());
 	    return "homeAdmin";
 	}
+    
+    @GetMapping("/admin/modificaAutore")
+    public String modifica(@RequestParam("id") long id, Model model) {
+	    model.addAttribute("id",id);
+	    Autore autore = autoreservice.findbyId(id);
+	    model.addAttribute("autore",autore);
+	    model.addAttribute("autori", autoreservice.findAll());
+	    return "homeAdmin";
+	}
+    
+    @PostMapping("/admin/editAutore")
+    public String edit(@Valid @ModelAttribute("autore") Autore autore,
+							BindingResult bindingResult, Model model) {
+    	if (bindingResult.hasErrors()) {
+    		
+    	    model.addAttribute("autori", autoreservice.findAll());
+    	    return "homeAdmin";
+    	}
+    	autoreservice.add(autore); 
+    	model.addAttribute("autori", autoreservice.findAll());
+	    return "homeAdmin";
+	}
+    
+    
 }

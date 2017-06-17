@@ -27,6 +27,7 @@
 		</div>
 		<h2>Autori</h2>
 		<div th:if="${not #lists.isEmpty(autori)}" class="list-group">
+		<form th:action="@{/admin/editAutore}" th:object="${autore}" method="post">
 			<table class="table table-hover" id="myTable">
 				<thead>
 					<tr>
@@ -38,25 +39,40 @@
 						<th>Azioni</th>
 					</tr>
 				</thead>
-				<tr th:each="autore : ${autori}">
-					<td th:text="${autore.nome}"></td>
-					<td th:text="${autore.cognome}"></td>
-					<td th:text="${autore.nazionalita}"></td>
-					<td th:text="${autore.dataDiNascita}"></td>
-					<td th:text="${autore.dataDiMorte}"></td>
+				<tr th:if="${id == item.id}" th:each="item : ${autori}">
+				<td><input th:type="text" th:field="*{nome}" th:value="${autore.nome}"/>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome Error</span>
+				<input th:type="hidden" th:value="${autore.id}" th:field="*{id}"/></td>
+				<td><input th:type="text" th:field="*{cognome}" th:value="${autore.cognome}"/>
+				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}">Cognome Error</span></td>
+				<td><input th:type="text" th:field="*{nazionalita}" th:value="${autore.nazionalita}"/>
+				<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}">Nazionalita Error</span></td>
+				<td><input th:type="text" th:field="*{dataDiNascita}" th:value="${autore.dataDiNascita}"/>
+				<span th:if="${#fields.hasErrors('dataDiNascita')}" th:errors="*{dataDiNascita}">DataDiNascita Error</span></td>
+				<td><input th:type="text" th:field="*{dataDiMorte}" th:value="${autore.dataDiMorte}"/>
+				<span th:if="${#fields.hasErrors('dataDiMorte')}" th:errors="*{dataDiMorte}">DataDiMorte Error</span></td>
+				<td><button type="submit" class="btn btn-default">Invia</button></td>
+				</tr>
+				<tr th:if="${id != item.id}" th:each="item : ${autori}">
+					<td  th:text="${item.nome}"></td>
+					<td th:text="${item.cognome}"></td>
+					<td th:text="${item.nazionalita}"></td>
+					<td th:text="${item.dataDiNascita}"></td>
+					<td th:text="${item.dataDiMorte}"></td>
 					<td>
-						<a th:href="@{'/admin/rimuoviAutore'(id=${autore.id})}">
+						<a th:href="@{'/admin/rimuoviAutore'(id=${item.id})}">
           				<span class="glyphicon glyphicon-trash"></span>
         				</a>
-        				<a href="/admin/modificaAutore">
+        				<a th:href="@{'/admin/modificaAutore'(id=${item.id})}">
           				<span class="glyphicon glyphicon-pencil"></span>
         				</a>
-        				<a th:href="@{'/admin/quadriAutore'(id=${autore.id})}">
+        				<a th:href="@{'/admin/quadriAutore'(id=${item.id})}">
           					<span class="glyphicon glyphicon-list"></span>
         				</a>
 					</td>
 				</tr>
 			</table>
+			</form>
 		</div>
 	</div>
 </body>
