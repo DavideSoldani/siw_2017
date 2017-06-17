@@ -21,6 +21,7 @@
 		<button onclick="location.href='/admin/'" style="margin-top:5%">Indietro</button>
 		<h2>Quadri di <span th:text="${autore.nome} + ' ' + ${autore.cognome}"></span> </h2>
 		<div th:if="${not #lists.isEmpty(quadri)}" class="list-group">
+		<form th:action="@{'/admin/editQuadro'(autoreId=${autore.id})}" th:object="${quadro}" method="post">
 			<table class="table table-hover" id="myTable">
 				<thead>
 					<tr>
@@ -31,21 +32,37 @@
 						<th>Azioni</th>
 					</tr>
 				</thead>
-				<tr th:each="quadro : ${quadri}">
-					<td th:text="${quadro.titolo}"></td>
-					<td th:text="${quadro.anno}"></td>
-					<td th:text="${quadro.tecnica}"></td>
-					<td th:text="${quadro.dimensioni}"></td>
+				
+				<tr th:if="${quadroId == item.id}" th:each="item : ${quadri}">
+				<td><input th:type="text" th:field="*{titolo}" th:value="${quadro.titolo}"/>
+				<span th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}">Titolo Error</span>
+				<input th:type="hidden" th:value="${quadro.id}" th:field="*{id}"/></td>
+				<td><input th:type="text" th:field="*{anno}" th:value="${quadro.anno}"/>
+				<span th:if="${#fields.hasErrors('anno')}" th:errors="*{anno}">Anno Error</span></td>
+				<td><input th:type="text" th:field="*{tecnica}" th:value="${quadro.tecnica}"/>
+				<span th:if="${#fields.hasErrors('tecnica')}" th:errors="*{tecnica}">Tecnica Error</span>
+				<input th:type="hidden" th:value="${quadro.autore}" th:field="*{autore}"/></td>
+				<td><input th:type="text" th:field="*{dimensioni}" th:value="${quadro.dimensioni}"/>
+				<span th:if="${#fields.hasErrors('dimensioni')}" th:errors="*{dimensioni}">Dimensioni Error</span></td>
+				<td><button type="submit" class="btn btn-default">Invia</button></td>
+				</tr>
+				
+				<tr th:if="${quadroId != item.id}" th:each="item : ${quadri}">
+					<td th:text="${item.titolo}"></td>
+					<td th:text="${item.anno}"></td>
+					<td th:text="${item.tecnica}"></td>
+					<td th:text="${item.dimensioni}"></td>
 					<td>
-						<a th:href="@{'/admin/rimuoviQuadro'(autoreId=${autore.id},quadroId=${quadro.id})}">
+						<a th:href="@{'/admin/rimuoviQuadro'(autoreId=${autore.id},quadroId=${item.id})}">
           				<span class="glyphicon glyphicon-trash"></span>
         				</a>
-        				<a th:href="@{'/admin/modificaQuadro'(autoreId=${autore.id}),(quadroId=${quadro.id})}">
+        				<a th:href="@{'/admin/modificaQuadro'(autoreId=${autore.id},quadroId=${item.id})}">
           				<span class="glyphicon glyphicon-pencil"></span>
         				</a>
         			</td>
 				</tr>
 			</table>
+			</form>
 		</div>
 	</div>
 </body>

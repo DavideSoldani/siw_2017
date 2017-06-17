@@ -30,6 +30,11 @@ public class QuadroController  {
     private QuadroService quadroservice; 
     @Autowired
     private AutoreService autoreservice;
+    
+    @ModelAttribute("quadro")
+    public Quadro quadro() {
+     return new Quadro();
+    }
 
     @GetMapping("/admin/quadro")
     public String showFormQuadro(Quadro quadro, Model model) {
@@ -55,13 +60,42 @@ public class QuadroController  {
     }
     
     @GetMapping("/admin/rimuoviQuadro")
-    public String rimuoviAutore(@RequestParam("autoreId") String autoreId, 
+    public String rimuoviQuadro(@RequestParam("autoreId") String autoreId, 
     							@RequestParam("quadroId") long quadroId, Model model) {
     	long autorId = Long.parseLong(autoreId);
     	Autore autore = autoreservice.findbyId(autorId);
 	    quadroservice.remove(quadroId);
 	    model.addAttribute("quadri", quadroservice.findByAutore_Id(autorId));
 	    model.addAttribute("autore",autore);
+	    return "listaQuadri";
+	}
+    
+    @GetMapping("/admin/modificaQuadro")
+    public String modifica(@RequestParam("autoreId") String autoreId, 
+							@RequestParam("quadroId") long quadroId, Model model){
+	    Quadro quadro = quadroservice.findbyId(quadroId);
+	    long autorId = Long.parseLong(autoreId);
+    	Autore autore = autoreservice.findbyId(autorId);
+    	model.addAttribute("quadroId",quadroId);
+	    model.addAttribute("quadro",quadro);
+	    model.addAttribute("autore",autore);
+	    model.addAttribute("quadri", quadroservice.findAll());
+	    return "listaQuadri";
+	}
+    
+    @PostMapping("/admin/editQuadro")
+    public String edit(@Valid @ModelAttribute("quadro") Quadro quadro,@RequestParam("autoreId") String autoreId, 
+							BindingResult bindingResult, Model model) {
+    	if (bindingResult.hasErrors()) {
+    		
+    	    model.addAttribute("quadri", quadroservice.findAll());
+    	    return "homeAdmin";
+    	}
+    	long autorId = Long.parseLong(autoreId);
+    	Autore autore = autoreservice.findbyId(autorId);
+    	model.addAttribute("autore",autore);
+    	quadroservice.add(quadro); 
+    	model.addAttribute("quadri", quadroservice.findAll());
 	    return "listaQuadri";
 	}
 }

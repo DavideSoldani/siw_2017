@@ -39,6 +39,7 @@
 						<th>Azioni</th>
 					</tr>
 				</thead>
+				
 				<tr th:if="${id == item.id}" th:each="item : ${autori}">
 				<td><input th:type="text" th:field="*{nome}" th:value="${autore.nome}"/>
 				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}">Nome Error</span>
@@ -53,6 +54,7 @@
 				<span th:if="${#fields.hasErrors('dataDiMorte')}" th:errors="*{dataDiMorte}">DataDiMorte Error</span></td>
 				<td><button type="submit" class="btn btn-default">Invia</button></td>
 				</tr>
+				
 				<tr th:if="${id != item.id}" th:each="item : ${autori}">
 					<td  th:text="${item.nome}"></td>
 					<td th:text="${item.cognome}"></td>
