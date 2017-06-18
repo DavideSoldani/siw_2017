@@ -47,7 +47,7 @@ public class AdminController {
         if (auth != null){    
            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "galleria";
+        return "../static/index";
      }
 	 
 	 @GetMapping("/admin/nuovoAmministratore")
