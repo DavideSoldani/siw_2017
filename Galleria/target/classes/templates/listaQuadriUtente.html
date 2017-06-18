@@ -17,7 +17,7 @@
 	
 
 	<div class="container">
-		<h2>Quadri di <span th:text="${autore.nome}"></span> </h2>
+		<h2>Quadri di <span th:text="${autore.nome} + ' ' + ${autore.cognome}"></span> </h2>
 		<button onclick="location.href='/listaAutori'">Torna agli Autori</button>
 		<div th:if="${not #lists.isEmpty(quadri)}" class="list-group">
 			<table class="table table-hover" id="myTable">

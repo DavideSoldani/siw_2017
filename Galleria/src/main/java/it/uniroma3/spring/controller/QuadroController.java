@@ -79,7 +79,7 @@ public class QuadroController  {
     	model.addAttribute("quadroId",quadroId);
 	    model.addAttribute("quadro",quadro);
 	    model.addAttribute("autore",autore);
-	    model.addAttribute("quadri", quadroservice.findAll());
+	    model.addAttribute("quadri", quadroservice.findByAutore_Id(autore.getId()));
 	    return "listaQuadri";
 	}
     
@@ -95,7 +95,7 @@ public class QuadroController  {
     	Autore autore = autoreservice.findbyId(autorId);
     	model.addAttribute("autore",autore);
     	quadroservice.add(quadro); 
-    	model.addAttribute("quadri", quadroservice.findAll());
+    	model.addAttribute("quadri", quadroservice.findByAutore_Id(autore.getId()));
 	    return "listaQuadri";
 	}
 }
