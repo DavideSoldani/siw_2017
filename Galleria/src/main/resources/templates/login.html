@@ -15,12 +15,11 @@
 </head>
 <body>
 
-	<div class="navbar navbar-inverse bg-inverse" style="margin-bottom:2%; text-align:center">
-		<div class="container d-flex justify-content-between">
-			<a href="/"	class="navbar-brand">Home</a>
-
-		</div>
+	
+	<div class="container d-flex justify-content-between" style="margin-bottom:2%; text-align:center">
+		<button onclick="location.href='/'" style="float: right; margin-right:5%">Home</button>
 	</div>
+	
 
 	<div class="container">
 		<form name="f" th:action="@{/login}" method="post" class="form-signin">
