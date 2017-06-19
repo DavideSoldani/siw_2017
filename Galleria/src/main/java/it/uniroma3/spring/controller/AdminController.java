@@ -1,5 +1,7 @@
 package it.uniroma3.spring.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -47,7 +49,7 @@ public class AdminController {
         if (auth != null){    
            new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "../static/index";
+        return "login";
      }
 	 
 	 @GetMapping("/admin/nuovoAmministratore")
@@ -84,10 +86,17 @@ public class AdminController {
 	 
 	 @GetMapping("/admin/rimuoviAmministratore")
 	    public String rimuoviAmministratore(@RequestParam("id") String id, Model model) {
+		 	List<Amministratore> amministratori = (List<Amministratore>) this.amministratoreService.findAll();
+			if (amministratori.size() != 1){ 
 		 	Amministratore amministratore = this.amministratoreService.findByUsername(id);
 		    this.amministratoreService.remove(amministratore);
 		    Autorizzazione autorizzazione = this.autorizzazioneService.findByUsername(id);
 		    this.autorizzazioneService.remove(autorizzazione);
+			}
+			else {
+				model.addAttribute("unicoAdmin",true);
+			}
+		    
 		    model.addAttribute("amministratori", amministratoreService.findAll());
 		    return "gestioneAdmin";
 		}
