@@ -20,7 +20,19 @@ public class QuadroService {
     public Iterable<Quadro> findByAutore_Id(Long id) {
         return this.quadroRepository.findByAutore_Id(id);
     }
-
+    
+    public Iterable<Quadro> findByTitolo(String titolo) {
+        return this.quadroRepository.findByTitolo(titolo);
+    }
+    
+    public Iterable<Quadro> findByTecnica(String tecnica) {
+        return this.quadroRepository.findByTecnica(tecnica);
+    }
+    
+    public Iterable<Quadro> findByAnno(String anno) {
+        return this.quadroRepository.findByAnno(anno);
+    }
+    
     @Transactional
     public void add(final Quadro quadro) {
         this.quadroRepository.save(quadro);

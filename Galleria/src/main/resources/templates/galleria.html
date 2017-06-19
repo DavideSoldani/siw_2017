@@ -1,81 +1,95 @@
-   
+
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
-    <link rel="icon" href="../../favicon.ico"/>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" href="../../favicon.ico" />
 
-    <title>Galleria</title>
+<title>Galleria</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap-min.css" rel="stylesheet"/>
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap-min.css" rel="stylesheet" />
 
-    <!-- Custom styles for this template -->
-    <link href="/css/album.css" rel="stylesheet"/>
-  </head>
+<!-- Custom styles for this template -->
+<link href="/css/album.css" rel="stylesheet" />
+</head>
 
-  <body>
-  
-   
-    
+<body>
 
-    
-    <div class="navbar navbar-inverse bg-inverse">
-      <div class="container d-flex justify-content-between">
-        <a href="#" class="navbar-brand">Galleria</a>
-        <a href= "/" class="navbar-brand">Home</a>
-        
-      </div>
-    </div>
+	<div class="navbar navbar-inverse bg-inverse">
+		<div class="container d-flex justify-content-between">
+			<a href="#" class="navbar-brand">Galleria</a> <a href="/"
+				class="navbar-brand">Home</a>
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Quadri</h1>
-        <p class="lead text-muted">Scegli un'opera</p>
-        </div>
-        <button onclick="location.href='/listaAutori'">Autori</button>
-    </section>
+		</div>
+	</div>
 
-    <div class="album text-muted">
-      <div class="container">
-		
-	 	<div th:if="${not #lists.isEmpty(quadri)}" class="list-group"> 
-			<table class="table table-hover" id="myTable">
-				<thead>
-					<tr>
-						<th onclick="sortTable(0)">Titolo</th>
-						<th onclick="sortTable(1)">Anno</th>
-						<th onclick="sortTable(2)">Tecnica</th>
-						<th onclick="sortTable(3)">Dimensioni</th>
-						<th >Immagine</th>
-						<th onclick="sortTable(4)">Autore</th>
-					</tr>
-				</thead>
-				<tr th:each="quadro : ${quadri}">
-					<td th:text="${quadro.titolo}"></td>
-					<td th:text="${quadro.anno}"></td>
-					<td th:text="${quadro.tecnica}"></td>
-					<td th:text="${quadro.dimensioni}"></td>
-					<td><a target="_black" th:href="${quadro.urlImage}" title="${quadro.titolo}"><b>Guarda l'opera</b></a></td>
-					<td>  
-					<a th:href="@{'/infoAutore'(id=${quadro.autore.id})}"><b th:text="${quadro.autore.nome} +' '+ ${quadro.autore.cognome}"></b></a>
-					</td>
-				</tr>
-			</table>
+	<section class="jumbotron text-center">
+		<div class="container">
+			<h1 class="jumbotron-heading">Le nostre opere</h1>
+
 		</div>
 
-      </div>
-    </div>
+	</section>
+	<div>
+		<form action="/galleria/filtra" method='post'>
+			<p style="float: left; display:inline; margin-left:5%">
+				Filtra per: <select name="filterType">
+					<option id='null' value=""></option>
+					<option id='titolo' value='titolo'>Titolo</option>
+					<option id='anno' value='anno'>Anno</option>
+					<option id='tecnica' value='tecnica'>Tecnica</option>
+				</select>
+				<input type="text" name='filtro'/>
+				<button type="submit">Vai</button>
+			</p>
+		</form>
+		<button onclick="location.href='/listaAutori'" style="float: right; margin-right:5%">Autori</button>
+	</div>
+	<div class="album text-muted">
+		<div class="container">
+			<div class="alert alert-danger" style="margin-top:2%" th:if="${listaVuota == true}">
+  				<strong>Nessun Risultato!</strong> Nessun quadro corrisponde ai criteri di ricerca.
+			</div>
+			<div th:if="${not #lists.isEmpty(quadri)}" class="list-group">
+				<table class="table table-hover" id="myTable">
+					<thead>
+						<tr>
+							<th onclick="sortTable(0)">Titolo</th>
+							<th onclick="sortTable(1)">Anno</th>
+							<th onclick="sortTable(2)">Tecnica</th>
+							<th onclick="sortTable(3)">Dimensioni</th>
+							<th>Immagine</th>
+							<th onclick="sortTable(4)">Autore</th>
+						</tr>
+					</thead>
+					<tr th:each="quadro : ${quadri}">
+						<td th:text="${quadro.titolo}"></td>
+						<td th:text="${quadro.anno}"></td>
+						<td th:text="${quadro.tecnica}"></td>
+						<td th:text="${quadro.dimensioni}"></td>
+						<td><a target="_black" th:href="${quadro.urlImage}"
+							title="${quadro.titolo}"><b>Guarda l'opera</b></a></td>
+						<td><a th:href="@{'/infoAutore'(id=${quadro.autore.id})}"><b
+								th:text="${quadro.autore.nome} +' '+ ${quadro.autore.cognome}"></b></a>
+						</td>
+					</tr>
+				</table>
+			</div>
 
-    <footer class="text-muted">
-      <div class="container">
-        <p class="float-right">
-          <a href="#">Torna su</a>
-        </p>
-       </div>
-    </footer>
-  </body>
+		</div>
+	</div>
+
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#">Torna su</a>
+			</p>
+		</div>
+	</footer>
+</body>
 </html>
