@@ -27,7 +27,9 @@ Il progetto è stato realizzato con l'utilizzo delle seguenti tecnologie:
 -Hibernate
 -JPA
 -Amazon Web Services(RDS,EC2)
+
 /* IL progetto non è più online */
+
 Il progetto è stato caricato su Amazon Web Services ed è raggiungibile al seguente indirizzo:
 
 52.214.145.184:8080
